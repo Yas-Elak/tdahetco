@@ -1,0 +1,29 @@
+.hero-img {
+    background-repeat: no-repeat;
+    background-size: cover  ;
+}
+
+.section{
+    padding-bottom: 0px;
+}
+
+.block img{
+    padding: 5px 8px 20px 20px;
+}
+
+.container-img{
+        text-align: center;
+}
+h1 {
+    text-align: center;
+    padding-bottom: 25px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+h2{
+    text-align: left;
+    font-size: 22px !important;
+    padding-bottom: 5px !important;
+}
+

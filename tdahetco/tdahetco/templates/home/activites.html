@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/activites.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--Full image under navbar-->
+<section class="hero is-link is-large hero-img">
+    <div class="hero-body">
+    </div>
+</section>
+<!--partie une-->
+<section class="section section-bg section-part-1">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1 class="title">{{ page.title }}</h1>
+            </div>
+            <div class="container">
+                <h3 class="title">{{ page.titre_partie_une }}</h3>
+                <span class="c-contenu-partie-une">{{ page.contenu_partie_une|richtext }}</span>
+            </div>
+            <br>
+            <br>
+            <div class="container">
+                <span class="c-contenu-partie-une">{{ page.contenu_partie_deux|richtext }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+{% endblock %}

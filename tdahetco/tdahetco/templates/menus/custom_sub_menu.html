@@ -1,0 +1,5 @@
+<div class="navbar-dropdown">
+    {% for sub_item in menu_items %}
+    <a href="{{ sub_item.href }}" class="navbar-item">{{ sub_item }}</a>
+    {% endfor %}
+</div>

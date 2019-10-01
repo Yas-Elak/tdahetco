@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-contact{% endblock %}
+{% block content %}
+
+<!--partie une-->
+<section class="section section-bg section-part-1">
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="container has-text-centered">
+            </div>
+            <div class="container">
+                <h1 class="title">{{ page.title }}</h1>
+                <span class="c-contenu-partie-une">{{ page.intro|richtext }}</span>
+            </div>
+            <div class="container">
+                <form action="{% pageurl page %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                    {% if forloop.counter0 < 5 %}
+                    {% if forloop.counter0 == 0 or forloop.counter0 == 2 %}
+                    <div class="columns">
+                        <div class="column is-6">
+                            {% elif forloop.counter0 == 1 or forloop.counter0 == 3 %}
+
+                            <div class="column is-6">
+                                {% endif %}
+                                <div class="field">
+                                    <label class="label">{{ field.label_tag }}</label>
+                                    {% if field.name == "message" %}
+                                    <div class="control">
+                                        <textarea class="textarea" name="{{ field.name }}" id="{{ field.id_for_label }}"
+                                                  {% if field.field.required %}required="required" {% endif %}
+                                        ></textarea>
+                                    </div>
+                                    {% else %}
+                                    <div class="control">
+                                        <input class="input" type="{{ field.field.widget.input_type }}"
+                                               name="{{ field.name }}" id="{{ field.id_for_label }}"
+                                               {% if field.field.required %}required="required" {% endif %}>
+                                    </div>
+                                </div>
+                                {%endif %}
+                                {% if forloop.counter0 == 0 or forloop.counter0 == 2 %}
+                            </div>
+                            {% elif forloop.counter0 == 1 or forloop.counter0 == 3 %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% else %}
+                    <br>
+                            {% render_field field %}
+                    {% endif %}
+                    {% endfor %}
+                    <br>
+                    <div class="control">
+                        <button class="button is-link">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<form action="{% pageurl page %}" method="POST">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+</form>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+{% endblock %}

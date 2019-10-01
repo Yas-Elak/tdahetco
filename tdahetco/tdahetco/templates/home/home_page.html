@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home_page.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-homepage{% endblock %}
+{% block content %}
+<!--partie une-->
+<section class="section section-bg">
+    <div class="columns">
+
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1>Le TDA/H</h1>
+                <h2 class="title">{{ page.titre_partie_une }}</h2>
+                <div class="columns is-vcentered  ">
+                    <div class="column has-text-centered is-8 ">
+                        <span class="c-contenu-partie-une">{{ page.contenu_partie_une|richtext }}</span>
+                    </div>
+                    <div class="column is-5">
+                        <span class="home_part_one">{% image page.image_partie_une width-200 %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="hr-bleu">
+<!--Parallax-->
+
+<!--<div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/para.jpg' %}">-->
+<section class="hero is-large hero-parallax">
+    <div class="hero-body">
+        <div class="container">
+        </div>
+    </div>
+</section>
+<!--</div>-->
+<hr class="hr-orange hr-mobile">
+<!--Partie deux-->
+<section class="section section-bg">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1 class="title">{{ page.titre_partie_deux }}</h1>
+                {{ page.contenu_partie_deux|richtext }}
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="hr-bleu">
+<!--Partie article-->
+<section class="hero is-info is-large">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Large title
+            </h1>
+            <h2 class="subtitle">
+                Large subtitle
+            </h2>
+        </div>
+    </div>
+</section>
+<hr class="hr-orange">
+
+<!--Partie trois-->
+<section class="section section-bg">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h2 class="title">{{ page.titre_partie_trois }}</h2>
+            </div>
+            <div class="columns  ">
+                <div class="column is-8 ">
+                    <br>
+                    <span class="c-contenu-partie-une">{{ page.contenu_partie_trois|richtext }}</span>
+                </div>
+                <div class="column is-5">
+                    <span class="home_part_one">{% image page.image_partie_trois width-350 %}</span>
+                </div>
+            </div>
+            <div class="container has-text-centered">
+                <h3 class="title-cta">{{ page.titre_cta_formation }}</h3>
+                <br>
+                <a class="button is-large is-link is-outlined " href="{{ page.bouton_cta_formation }}">En savoir
+                    plus</a>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="hr-bleu">
+
+<!--Partie présentation-->
+<section class="section section-bg">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container">
+                <div class="columns  ">
+                    <div class="column is-6 has-text-justified column-presentation ">
+                        <br>
+                        <span class="c-contenu-partie-presentation">{{ page.contenu_partie_presentation|richtext }}</span>
+                    </div>
+                    <div class="column is-6 ">
+                        <p>Suivez-moi sur Facebook</p>
+                        <a class="facebook-a" href="https://www.facebook.com/TdahEtCo/"><img class="facebook-img"
+                                                                                             src="{% static 'images/facebook.png' %}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $('.parallax-window').parallax({imageSrc: '{% static "images/kid.jpg" %}'});
+    });
+</script>
+
+
+{% endblock %}

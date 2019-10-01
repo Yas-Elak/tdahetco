@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/formations-groupes.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--Full image under navbar-->
+<section class="hero is-link is-large hero-img">
+    <div class="hero-body">
+    </div>
+</section>
+<!--partie une-->
+<section class="section section-bg section-part-1">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1 class="title">{{ page.title }}</h1>
+                <!--<h2 class="title">{{ page.titre_partie_une_b }}</h2>-->
+            </div>
+            <div class="container">
+                <span class="c-contenu-partie-une">{{ page.contenu_partie_une|richtext }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Partie deux-->
+<section class="section section-bg section-part-2">
+    <div class="columns part2 section-bg">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-justified">
+                <h2 class="title title-part-2">{{ page.titre_partie_deux }}</h2>
+                <div class="columns is-vcentered">
+                    <div class="column is-8 column-part-2">
+                        <span class="c-contenu-partie-une">{{ page.contenu_partie_deux|richtext }}</span>
+                    </div>
+                    <div class="column is-5 img-part-2">
+                        <img src="{% static 'images/formationengroupe.jpg' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Partie trois-->
+<section class="section section-bg section-part-3">
+    <div class="columns part2 section-bg">
+        <div class="column is-10 is-offset-2">
+            <div class="container has-text-justified">
+                <div class="columns ">
+                    <div class="column is-10 column-part-2">
+                        <h2 class="title title-part-3">{{ page.titre_partie_trois }}</h2>
+                        <span class="c-contenu-partie-une">{{ page.contenu_partie_trois|richtext }}</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-bg section-part-theme">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h2 class="title">{{ page.titre_partie_theme }}</h2>
+            </div>
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-6 has-text-centered">
+                        <span class="part_theme">{{ page.contenu_theme_a|richtext}}</span>
+                    </div>
+                    <div class="column is-6 has-text-centered">
+                        <span class="part_theme">{{ page.contenu_theme_b|richtext}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+{% endblock %}

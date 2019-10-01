@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/formatrice.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--Full image under navbar-->
+<section class="hero is-link is-large hero-img">
+    <div class="hero-body">
+    </div>
+</section>
+<!--partie une-->
+<section class="section section-bg section-part-1">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1 class="title">{{ page.title }}</h1>
+            </div>
+            <div class="container">
+                <span class="c-contenu-partie-une">{{ page.contenu_partie_une|richtext }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Partie deux-->
+<section class="section section-bg section-part-2">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1 class="title">{{ page.titre_partie_deux }}</h1>
+            </div>
+            <div class="container">
+                <div id="tabs-with-content">
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li><a class="tablinks" onclick="openTab(event, 'tab_a')">{{page.titre_tab_a}}</a></li>
+                            <li><a class="tablinks" onclick="openTab(event, 'tab_b')">{{page.titre_tab_b}}</a></li>
+                            <li><a class="tablinks" onclick="openTab(event, 'tab_c')">{{page.titre_tab_c}}</a></li>
+                            <li><a class="tablinks" onclick="openTab(event, 'tab_d')">{{page.titre_tab_d}}</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div id="tab_a" class="tabcontent">{{page.contenu_tab_a|richtext}}</div>
+                        <div id="tab_b" class="tabcontent">{{page.contenu_tab_b|richtext}}</div>
+                        <div id="tab_c" class="tabcontent">{{page.contenu_tab_c|richtext}}</div>
+                        <div id="tab_d" class="tabcontent">{{page.contenu_tab_d|richtext}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+{% endblock %}

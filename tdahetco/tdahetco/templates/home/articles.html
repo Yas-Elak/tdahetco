@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/articles.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--Full image under navbar-->
+<section class="hero is-link is-large hero-img">
+    <div class="hero-body">
+    </div>
+</section>
+<!--partie une-->
+<section class="section">
+    <h1> Articles sur le TDA/H</h1>
+    {% with categories=categories.all %}
+    {% if categories %}
+    <div class="container">
+        <div class="columns is-centered">
+            {% for category in categories %}
+            <div class="column is-4">
+                <h2>{{ category.name }}</h2>
+
+                <ul>
+                    {% for article in articles %}
+                    {% with article_categories=article.categories.all %}
+                    {% if article_categories %}
+                    {% for article_category in article_categories %}
+                    {% if article_category.name == category.name %}
+                    <a href="{{article.url}}"><div class="card">
+                        {% if article.banner_image %}
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                {% image article.banner_image original as art_bkg %}
+                                <img src="{{art_bkg.url}}" alt="article image">
+                            </figure>
+                        </div>
+                        {% endif %}
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <h2 class="title is-4">{{ article.title }}</h2>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                {{ article.article_description }}
+                                <br>
+                            </div>
+                        </div>
+                    </div></a>
+
+                    <br> {% endif %}
+                    {% endfor %}
+                    {% endif %}
+
+                    {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--Full image under navbar-->
+{% if page.banner_image %}
+{% image page.banner_image original as hero_bkg %}
+<section class="hero is-link is-large hero-img" style="background-image:url({{hero_bkg.url}})">
+    <div class="hero-body">
+    </div>
+</section>
+<hr class="hr-bleu">
+{% endif %}
+<!--partie une-->
+<section class="section">
+
+    <div class="columns row-article">
+
+        {% with blocks=self.body %}
+        <div class="column is-8 is-offset-2">
+            <h1 class="article-h1">{{page.title}}</h1>
+            {% for block in blocks %}
+            {% if block.block_type == 'heading' %}
+            <div class="container has-text-centered">
+                <h2 class="title">{{ block.value }}</h2>
+            </div>
+            {% else %}
+            {% if block.block_type == "image" %}
+            <div class="container container-img">
+                <span class="block">{{ block }}</span>
+            </div>
+            {% else %}
+            <div class="container">
+                <span class="block">{{ block }}</span>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <!--</section>-->
+        {% endwith %}
+
+        <aside class="menu column is-2">
+            <h2 class="menu-label">
+                Articles
+            </h2>
+            {% with categories=categories.all %}
+            {% if categories %}
+            {% for category in categories %}
+
+            <h2>{{ category.name }}</h2>
+            <ul>
+
+                {% for article in articles %}
+
+                {% with article_categories=article.categories.all %}
+                {% if article_categories %}
+                {% for article_category in article_categories %}
+                {% if article_category.name == category.name %}
+                <li><a href="{{article.url}}">{{article.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% endwith %}
+                {% endfor %}
+            </ul>
+
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </aside>
+    </div>
+
+</section>
+<!--{% with categories=categories.all %}-->
+<!--{% if categories %}-->
+<!--<h3>Categories</h3>-->
+<!--<ul>-->
+<!--{% for category in categories %}-->
+<!--<li style="display: inline">-->
+<!--{{ category.name }}-->
+<!--</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+<!--{% endif %}-->
+<!--{% endwith %}-->
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+{% endblock %}
+
+

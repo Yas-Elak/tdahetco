@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-contact{% endblock %}
+{% block content %}
+
+<!--partie une-->
+<section class="section section-bg section-part-1">
+    <div class="columns">
+        <div class="column is-6 is-offset-3">
+            <div class="container has-text-centered">
+            </div>
+            <div class="container">
+                <h1 class="title">{{ page.title }}</h1>
+                <span class="c-contenu-partie-une">{{ page.intro|richtext }}</span>
+            </div>
+            <div class="container">
+                <h2>{{page.thank_you_text|richtext}}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+
+{% endblock %}

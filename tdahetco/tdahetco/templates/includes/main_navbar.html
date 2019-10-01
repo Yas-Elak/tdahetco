@@ -1,0 +1,63 @@
+{% load menu_tags %}
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="www.tdahetco.com">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+           data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            {% for item in menu_items %}
+            <li class="{{ item.active_class }}">
+                <a href="{{ item.href }}">{{ item.text }}</a>
+                {% if item.has_children_in_menu %}
+                {% sub_menu item %}
+                {% endif %}
+            </li>
+            {% endfor %}
+            {%for item in navigation.menu_items.all %}
+            {%if forloop.counter0 == 0 %}
+            {% else %}
+            {% if item.title == "formation individualisées" or item.title == "formations en groupe" %}
+            {% if item.title == "formation individualisées" %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Formations</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">{{ item.title }}</a>
+                    {% endif %}
+                    {% if item.title == "formations en groupe" %}
+                    <a class="navbar-item">{{ item.title }}</a>
+                </div>
+            </div>
+            {% endif %}
+            {% else %}
+            <a href="{{item.url}}" class="navbar-item">{{ item.title}}</a>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<hr class="hr-navbar">

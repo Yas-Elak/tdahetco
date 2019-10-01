@@ -1,0 +1,9 @@
+.hero-img {
+    background-image: url("../images/fondpages.jpg");
+    background-repeat: no-repeat;
+    background-size: cover  ;
+}
+
+.section{
+    padding-bottom: 0px;
+}
