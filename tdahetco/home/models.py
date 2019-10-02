@@ -31,6 +31,7 @@ from wagtail.core.fields import StreamField
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 
+
 class FormField(AbstractFormField):
     page = ParentalKey('ContactPage', related_name='custom_form_fields')
 
@@ -144,7 +145,6 @@ class HomePage(Page):
         return context
 
 
-
 class Formations_individuelles(Page):
     """Formations page Model"""
 
@@ -165,7 +165,6 @@ class Formations_individuelles(Page):
     titre_partie_theme = models.CharField(max_length=255, blank=False, null=True)
     contenu_theme_a = RichTextField(null=True)
     contenu_theme_b = RichTextField(null=True)
-
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -189,6 +188,7 @@ class Formations_individuelles(Page):
         ], heading="Thèmes"),
     ]
 
+
 class Formations_groupes(Page):
     """Formations page Model"""
 
@@ -208,7 +208,6 @@ class Formations_groupes(Page):
     titre_partie_theme = models.CharField(max_length=255, blank=False, null=True)
     contenu_theme_a = RichTextField(null=True)
     contenu_theme_b = RichTextField(null=True)
-
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -253,7 +252,6 @@ class Formatrice(Page):
     contenu_tab_c = RichTextField(null=True)
     contenu_tab_d = RichTextField(null=True)
 
-
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel("contenu_partie_une"),
@@ -280,7 +278,6 @@ class Formatrice(Page):
     ]
 
 
-
 class Activites(Page):
     """activites page Model"""
 
@@ -303,10 +300,17 @@ class Activites(Page):
         ], heading="NB"),
     ]
 
-class Formation_Redirect(Page):
+
+class Formation_redirect(Page):
     """page redirigées vers la formation individuelles"""
 
     max_count = 1
+
+    contenu = RichTextField(null=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("contenu"),
+    ]
 
 
 @register_snippet
@@ -358,14 +362,12 @@ class ArticlesListingPage(Page):
 
 
 class Article(Page):
-
     template = "home/article.html"
     categories = ParentalManyToManyField("home.ArticleCategory", blank=True)
 
     auteur = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField("Post date", default=datetime.date.today)
     article_description = models.CharField(max_length=255, null=True, blank=True)
-
 
     banner_image = models.ForeignKey(
         "wagtailimages.Image",
