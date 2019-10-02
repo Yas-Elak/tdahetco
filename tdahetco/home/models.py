@@ -304,6 +304,8 @@ class Activites(Page):
 class Formation_redirect(Page):
     """page redirigées vers la formation individuelles"""
 
+    template = "home/formations.html"
+
     max_count = 1
 
     contenu = RichTextField(null=True)

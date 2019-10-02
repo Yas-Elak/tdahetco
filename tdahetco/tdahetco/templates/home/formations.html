@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/formations.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block body_class %}template-formations_groupes{% endblock %}
+{% block content %}
+
+<!--partie une-->
+<section class="section section-bg">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="container has-text-centered">
+                <h1>{{ page.title }}</h1>
+                <div class="columns is-vcentered  ">
+                    <div class="column has-text-centered is-8 ">
+                        <span class="c-contenu-partie-une">{{ page.contenu }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+{% endblock %}
