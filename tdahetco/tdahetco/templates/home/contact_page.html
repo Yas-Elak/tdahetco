@@ -71,12 +71,6 @@
         </div>
     </div>
 </section>
-<form action="{% pageurl page %}" method="POST">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-</form>
-
 {% endblock %}
 
 {% block extra_js %}
