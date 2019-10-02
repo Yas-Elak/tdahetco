@@ -132,20 +132,17 @@ class HomePage(Page):
 
     ]
 
-    # def get_recent_blogs(self):
-    #     max_count = 5  # max count for displaying post
-    #     return Article.objects.all().order_by('-first_published_at')[:max_count]
-    #
-    #     # add this to custom context
-    #
-    # def get_context(self, request):
-    #     context = super(HomePage, self).get_context(request)
-    #     context['article'] = self.get_recent_blogs()
-    #     return context
-    # def get_context(self, request, *args, **kwargs):
-    #     context = super(Article, self).get_context(request, *args, **kwargs)
-    #     # context["articles"] = Article.objects.live().public()
-    #     return context
+    def get_recent_blogs(self):
+        max_count = 2  # max count for displaying post
+        return Article.objects.all().order_by('-date')[:max_count]
+
+        # add this to custom context
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(HomePage, self).get_context(request)
+        context['article'] = self.get_recent_blogs()
+        return context
+
 
 
 class Formations_individuelles(Page):
