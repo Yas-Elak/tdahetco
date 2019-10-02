@@ -6,7 +6,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/home_page.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+      integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+      integrity="sha256-4hqlsNP9KM6+2eA8VUT0kk4RsMRTeS7QGHIM+MZ5sLY=" crossorigin="anonymous"/>
 {% endblock %}
 
 {% block body_class %}template-homepage{% endblock %}
@@ -56,15 +60,26 @@
 </section>
 <hr class="hr-bleu">
 <!--Partie article-->
-<section class="hero is-info is-large">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title">
-                Large title
-            </h1>
-            <h2 class="subtitle">
-                Large subtitle
-            </h2>
+
+<!-- Start Hero Carousel -->
+<section class="section">
+    <div class="column is-8 is-offset-2">
+        <div class="hero is-large has-carousel">
+            <div class="single">
+                {% for article in articles %}
+                {% image article.banner_image original as art_bkg %}
+                <a href="articles.html"><div class="item-container  has-text-centered" onclick="alert('{{article.title }}')">
+                    <span class="article-title has-text-white">{{ article.title }}</span>
+                    {% if article.banner_image %}
+                    <img src="{{art_bkg.url}}" alt="article image">
+                    {% else %}
+                    <img src="{% static 'images/kidread.jpg' %}" alt="article image">
+                    {% endif %}
+                </div></a>
+                {% endfor %}
+            </div>
+            <div class="hero-head"></div>
+            <div class="hero-foot"></div>
         </div>
     </div>
 </section>
@@ -118,6 +133,7 @@
     </div>
 </section>
 
+
 {% endblock %}
 
 {% block extra_js %}
@@ -131,6 +147,45 @@
         $('.parallax-window').parallax({imageSrc: '{% static "images/kid.jpg" %}'});
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+
+<!--<script>-->
+<!--bulmaCarousel.attach('#carousel-demo', {-->
+<!--slidesToScroll: 1,-->
+<!--slidesToShow: 1,-->
+<!--autoplay: false,-->
+<!--loop: true,-->
+<!--autoplaySpeed: 5000-->
+<!--});-->
+
+<!--// To access to bulmaCarousel instance of an element-->
+<!--const element = document.querySelector('.item');-->
+<!--if (element && element.bulmaCarousel) {-->
+<!--// bulmaCarousel instance is available as element.bulmaCarousel-->
+<!--element.bulmaCarousel.on('show', function (bulmaCarouselInstance) {-->
+<!--console.log(bulmaCarouselInstance.index);-->
+<!--});-->
+<!--}-->
 
 
+<!--</script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
+        integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0=" crossorigin="anonymous"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $('.single').slick({
+            dots: true,
+            arrows: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true
+        });
+    });
+
+</script>
 {% endblock %}
