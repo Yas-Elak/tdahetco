@@ -68,14 +68,16 @@
             <div class="single">
                 {% for article in articles %}
                 {% image article.banner_image original as art_bkg %}
-                <a href="articles.html"><div class="item-container  has-text-centered" onclick="alert('{{article.title }}')">
-                    <span class="article-title has-text-white">{{ article.title }}</span>
-                    {% if article.banner_image %}
-                    <img src="{{art_bkg.url}}" alt="article image">
-                    {% else %}
-                    <img src="{% static 'images/kidread.jpg' %}" alt="article image">
-                    {% endif %}
-                </div></a>
+                <a href="articles.html">
+                    <div class="item-container  has-text-centered" onclick="alert('{{article.title }}')">
+                        <span class="article-title has-text-white">{{ article.title }}</span>
+                        {% if article.banner_image %}
+                        <img src="{{art_bkg.url}}" alt="article image">
+                        {% else %}
+                        <img src="{% static 'images/kidread.jpg' %}" alt="article image">
+                        {% endif %}
+                    </div>
+                </a>
                 {% endfor %}
             </div>
             <div class="hero-head"></div>
@@ -184,6 +186,14 @@
             speed: 300,
             slidesToShow: 1,
             adaptiveHeight: true
+        });
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function () {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
         });
     });
 
